@@ -31,7 +31,6 @@ public class Main {
         employeeBook.employeeNameInfo();
         System.out.println();
 
-
         System.out.println("Информация о работниках по отделам:");
         employeeBook.employeesInfoByDepartment(2);
         employeeBook.employeesInfoByDepartment(5);
@@ -44,19 +43,25 @@ public class Main {
         System.out.println("Сумма затрат отдела 3: " + employeeBook.sumAmount(3));
         System.out.println("Сумма затрат отдела 4: " + employeeBook.sumAmount(4));
         System.out.println("Сумма затрат отдела 5: " + employeeBook.sumAmount(5));
+        System.out.println();
+
         System.out.println("Минимальная зарплата : " + employeeBook.minSalary());
         System.out.println("Минимальная зарплата отдела 1: " + employeeBook.minSalary(1));
         System.out.println("Минимальная зарплата отдела 2: " + employeeBook.minSalary(2));
         System.out.println("Минимальная зарплата отдела 3: " + employeeBook.minSalary(3));
         System.out.println("Минимальная зарплата отдела 4: " + employeeBook.minSalary(4));
         System.out.println("Минимальная зарплата отдела 5: " + employeeBook.minSalary(5));
+        System.out.println();
+
         System.out.println("Максимальная зарплата:" + employeeBook.maxSalary());
         System.out.println("Максимальная зарплата отдела 1:" + employeeBook.maxSalary(1));
         System.out.println("Максимальная зарплата отдела 2:" + employeeBook.maxSalary(2));
         System.out.println("Максимальная зарплата отдела 3:" + employeeBook.maxSalary(3));
         System.out.println("Максимальная зарплата отдела 4:" + employeeBook.maxSalary(4));
         System.out.println("Максимальная зарплата отдела 5:" + employeeBook.maxSalary(5));
-        System.out.println("Средняя зарплата: " + employeeBook.averageSalary());
+        System.out.println();
+
+//        System.out.println("Средняя зарплата: " + employeeBook.averageSalary());
         System.out.println("Средняя зарплата отдела 1: " + employeeBook.averageSalary(1));
         System.out.println("Средняя зарплата отдела 2: " + employeeBook.averageSalary(2));
         System.out.println("Средняя зарплата отдела 3: " + employeeBook.averageSalary(3));
@@ -78,10 +83,10 @@ public class Main {
         employeeBook.employeesInfo();
         System.out.println();
 
-        System.out.print("Сотрудники с зарплатой более 3000: ");
+        System.out.println("Сотрудники с зарплатой более 3000: ");
         employeeBook.maxFilterSalary(3000);
         System.out.println();
-        System.out.print("Сотрудники с зарплатой менее 3000: ");
+        System.out.println("Сотрудники с зарплатой менее 3000: ");
         employeeBook.minFilterSalary(3000);
         System.out.println();
 
@@ -98,9 +103,11 @@ public class Main {
         System.out.println("Добавление сотрудников");
         System.out.println(employeeBook.add(employee3));
         System.out.println(employeeBook.add(employee6));
+        System.out.println();
 
         System.out.print("Изменение отдела: ");
         System.out.println(employeeBook.updateEmployeeDepartment("Кравцов Алексей Евгеньевич", 2));
+        System.out.println();
         System.out.print("Изменение зарплаты: ");
         System.out.println(employeeBook.updateEmployeeSalary("Кравцов Алексей Евгеньевич", 2050));
         System.out.println();

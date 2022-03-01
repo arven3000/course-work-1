@@ -1,5 +1,7 @@
 package pro.sky.java.course1;
 
+import java.util.Arrays;
+
 public class EmployeeBook {
 
     private final Employee[] employees;
@@ -8,20 +10,23 @@ public class EmployeeBook {
         this.employees = new Employee[size];
     }
 
-    /*Посчитать сумму затрат на зарплаты*/
+    private Employee[] filterByDepartment(Employee[] employees, int department) {
+        return Arrays.stream(employees)
+                .filter(e -> e.getDepartment() == department).toArray(Employee[]::new);
+    }
+
     public double sumAmount() {
-        double sum = 0;
-        for (Employee employee : employees) {
-            if (employee == null) {
-                continue;
-            }
-            sum += employee.getSalary();
-        }
-        return sum;
+        return sumAmount(employees);
     }
 
     /*Посчитать сумму затрат на зарплаты по отделу*/
     public double sumAmount(int department) {
+        Employee[] employeesByDepartment = filterByDepartment(employees, department);
+        return sumAmount(employeesByDepartment);
+    }
+
+    /*Посчитать сумму затрат на зарплаты*/
+    private double sumAmount(Employee[] employees) {
         double sum = 0;
         for (Employee employee : employees) {
             if (employee == null) {
@@ -32,102 +37,96 @@ public class EmployeeBook {
         return sum;
     }
 
-    /*Найти сотрудника с минимальной заплатой*/
     public double minSalary() {
-        double min = employees[0].getSalary();
-        for (Employee employee : employees) {
-            if (employee == null) {
-                continue;
-            }
-            if (min > employee.getSalary()) {
-                min = employee.getSalary();
-            }
-        }
-        return min;
+        return minSalary(employees);
     }
 
-    /*Найти сотрудника с минимальной заплатой по отделу*/
+    /*Найти сотрудника с минимальной зарплатой по отделу*/
     public double minSalary(int department) {
-        double min = employees[0].getSalary();
-        for (Employee employee : employees) {
-            if (employee == null) {
-                continue;
-            }
-            if (min > employee.getSalary() && department == employee.getDepartment()) {
-                min = employee.getSalary();
+        Employee[] employeesByDepartment = filterByDepartment(employees, department);
+        return minSalary(employeesByDepartment);
+    }
+
+    /*Найти сотрудника с минимальной зарплатой*/
+    private double minSalary(Employee[] employees) {
+        double min = 0;
+        if (employees.length != 0) {
+            min = employees[0].getSalary();
+            for (Employee employee : employees) {
+                if (employee == null) {
+                    continue;
+                }
+                if (min > employee.getSalary()) {
+                    min = employee.getSalary();
+                }
             }
         }
         return min;
     }
 
-    /*Найти сотрудника с максимальной заплатой*/
     public double maxSalary() {
-        double max = employees[0].getSalary();
-        for (Employee employee : employees) {
-            if (employee == null) {
-                continue;
-            }
-            if (max < employee.getSalary()) {
-                max = employee.getSalary();
-            }
-        }
-        return max;
+        return maxSalary(employees);
     }
 
     /*Найти сотрудника с максимальной заплатой по отделу*/
     public double maxSalary(int department) {
-        double max = employees[0].getSalary();
-        for (Employee employee : employees) {
-            if (employee == null) {
-                continue;
-            }
-            if (max < employee.getSalary() && department == employee.getDepartment()) {
-                max = employee.getSalary();
+        Employee[] employeesByDepartment = filterByDepartment(employees, department);
+        return maxSalary(employeesByDepartment);
+    }
+
+    /*Найти сотрудника с максимальной зарплатой*/
+    private double maxSalary(Employee[] employees) {
+        double max = 0;
+        if (employees.length != 0) {
+            max = employees[0].getSalary();
+            for (Employee employee : employees) {
+                if (employee == null) {
+                    continue;
+                }
+                if (max < employee.getSalary()) {
+                    max = employee.getSalary();
+                }
             }
         }
         return max;
     }
 
-    /*Подсчитать среднее значение зарплат*/
     public double averageSalary() {
-        return sumAmount() / employees.length;
+        return averageSalary(employees, employees.length);
     }
 
     /*Подсчитать среднее значение зарплат по отделу*/
     public double averageSalary(int department) {
-        int count = 0;
-        double sum = 0;
-        for (Employee employee : employees) {
-            if (employee == null) {
-                continue;
-            }
-            if (employee.getDepartment() == department) {
-                sum += employee.getSalary();
-                count++;
-            }
+        Employee[] employeesByDepartment = filterByDepartment(employees, department);
+        return averageSalary(employeesByDepartment, employeesByDepartment.length);
+    }
+
+
+    /*Подсчитать среднее значение зарплат*/
+    private double averageSalary(Employee[] employees, int len) {
+        if (employees.length != 0) {
+            return sumAmount(employees) / len;
         }
-        return sum / count;
+        return 0.0;
     }
 
     /*Прибавить процент к зарплате*/
     public void salaryIncrease(int percent) {
+        salaryIncrease(employees, percent);
+    }
+
+    /*Прибавить процент к зарплате по отделу*/
+    public void salaryIncrease(int department, int percent) {
+        Employee[] employeesByDepartment = filterByDepartment(employees, department);
+        salaryIncrease(employeesByDepartment, percent);
+    }
+
+    private void salaryIncrease(Employee[] employees, int percent) {
         for (Employee employee : employees) {
             if (employee == null) {
                 continue;
             }
             employee.setSalary(employee.getSalary() + employee.getSalary() * percent / 100);
-        }
-    }
-
-    /*Прибавить процент к зарплате по отделу*/
-    public void salaryIncrease(int department, int percent) {
-        for (Employee employee : employees) {
-            if (employee == null) {
-                continue;
-            }
-            if (employee.getDepartment() == department) {
-                employee.setSalary(employee.getSalary() + employee.getSalary() * percent / 100);
-            }
         }
     }
 

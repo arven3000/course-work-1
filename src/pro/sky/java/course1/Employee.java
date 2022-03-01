@@ -3,6 +3,7 @@ package pro.sky.java.course1;
 public class Employee {
 
     static int counter = 1;
+
     private final String name;
     private final int id;
     private int department;
