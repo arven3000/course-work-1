@@ -164,9 +164,11 @@ public class EmployeeBook {
 
     /*Удалить сотрудника по id*/
     public boolean delete(int id) {
-        if (id < employees.size() && id > 0) {
-            employees.remove(employees.get(id - 1));
-            return true;
+        for (int i = 0; i < employees.size(); i++) {
+            if (employees.get(i).getId() == id) {
+                employees.remove(employees.get(i));
+                return true;
+            }
         }
         return false;
     }
