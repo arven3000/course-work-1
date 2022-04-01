@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        EmployeeBook employeeBook = new EmployeeBook(10);
+        EmployeeBook employeeBook = new EmployeeBook();
 
         Employee employee1 = new Employee("Иванов Василий Петрович", 1, 2100);
         Employee employee2 = new Employee("Петров Иван Васильевич", 2, 2200);
@@ -61,7 +61,7 @@ public class Main {
         System.out.println("Максимальная зарплата отдела 5:" + employeeBook.maxSalary(5));
         System.out.println();
 
-//        System.out.println("Средняя зарплата: " + employeeBook.averageSalary());
+        System.out.println("Средняя зарплата: " + employeeBook.averageSalary());
         System.out.println("Средняя зарплата отдела 1: " + employeeBook.averageSalary(1));
         System.out.println("Средняя зарплата отдела 2: " + employeeBook.averageSalary(2));
         System.out.println("Средняя зарплата отдела 3: " + employeeBook.averageSalary(3));
@@ -83,15 +83,17 @@ public class Main {
         employeeBook.employeesInfo();
         System.out.println();
 
-        System.out.println("Сотрудники с зарплатой более 3000: ");
-        employeeBook.maxFilterSalary(3000);
+        System.out.println("Сотрудники с зарплатой более 2800: ");
+        employeeBook.maxFilterSalary(2800);
         System.out.println();
-        System.out.println("Сотрудники с зарплатой менее 3000: ");
-        employeeBook.minFilterSalary(3000);
+        System.out.println("Сотрудники с зарплатой менее 2500: ");
+        employeeBook.minFilterSalary(2500);
         System.out.println();
 
         System.out.println("Удаление по id: ");
-        System.out.println(employeeBook.delete(3));
+        System.out.println(employeeBook.delete(10));
+        employeeBook.employeesInfo();
+        System.out.println(employeeBook.delete(8));
         employeeBook.employeesInfo();
         System.out.println();
 
@@ -101,8 +103,8 @@ public class Main {
         System.out.println();
 
         System.out.println("Добавление сотрудников");
-        System.out.println(employeeBook.add(employee3));
-        System.out.println(employeeBook.add(employee6));
+        employeeBook.add(employee3);
+        employeeBook.add(employee6);
         System.out.println();
 
         System.out.print("Изменение отдела: ");
